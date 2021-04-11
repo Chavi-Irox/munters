@@ -1,0 +1,67 @@
+<ng-container *ngIf="bookData.CoverPhoto; else defaultImage">
+    <img width="100" [src]="bookData.CoverPhoto">
+</ng-container>
+<ng-template #defaultImage>
+    <img width="100" [src]="DEFAULT_IMG">
+</ng-template>
+<form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+    <div class="form-group">
+        <label for="name">Book Name</label>
+        <input type="text" class="form-control" id="name" required minlength="4" [(ngModel)]="bookData.Name" name="name"
+            #name="ngModel">
+        <!-- TODO: add validation message component -->
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+            <div *ngIf="name.errors.required">
+                Name is required.
+            </div>
+            <div *ngIf="name.errors.minlength">
+                Name must be at least 4 characters long.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="authorName">Author Name</label>
+        <input type="text" class="form-control" id="authorName" required minlength="4" [(ngModel)]="bookData.AuthorName"
+            name="authorName" #authorName="ngModel">
+        <div *ngIf="authorName.invalid && (authorName.dirty || authorName.touched)" class="alert alert-danger">
+
+            <div *ngIf="authorName.errors.required">
+                Author Name is required.
+            </div>
+            <div *ngIf="authorName.errors.minlength">
+                Author Name must be at least 4 characters long.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="catalogId">Catalog Id</label>
+        <input type="text" class="form-control" id="catalogId" [(ngModel)]="bookData.CatalogId" name="catalogId"
+            #catalogId="ngModel" disabled>
+    </div>
+    <!-- TODO change to calendar component -->
+    <div class="form-group">
+        <label for="publicationDate">Publish Date</label>
+        <input class="form-control" id="publicationDate" [(ngModel)]="bookData.PublicationDate" name="publicationDate"
+            #publicationDate="ngModel" required pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}">
+        <div *ngIf="publicationDate.invalid && (publicationDate.dirty || publicationDate.touched)"
+            class="alert alert-danger">
+
+            <div *ngIf="publicationDate.errors.required">
+                Publish Date is required.
+            </div>
+            <div *ngIf="publicationDate.errors.pattern">
+                Publish Date is incorect.
+            </div>
+        </div>
+    </div>
+    <!-- TODO change to file input -->
+    <div class="form-group">
+        <label for="coverPhoto">cover URL</label>
+        <input type="text" class="form-control" id="coverPhoto" [(ngModel)]="bookData.CoverPhoto" name="coverPhoto"
+            #coverPhoto="ngModel">
+    </div>
+    <button type="submit" [disabled]="!bookForm.valid">Submit</button>
+</form>

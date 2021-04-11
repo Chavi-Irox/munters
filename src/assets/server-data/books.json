@@ -1,0 +1,16 @@
+[
+    {
+        "CatalogId": "1",
+        "Name": "Book aaa",
+        "AuthorName": "Dor Shalom",
+        "PublicationDate": "01/01/2000",
+        "CoverPhoto": "123"
+    },
+    {
+        "CatalogId": "2",
+        "Name": "The new home",
+        "AuthorName": "Ben Leon",
+        "PublicationDate": "25/12/2020",
+        "CoverPhoto": "123"
+    }
+]

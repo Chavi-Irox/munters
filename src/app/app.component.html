@@ -1,0 +1,4 @@
+<div class="container">
+  <app-books-list (bookSelected)="onBookSelected($event)" [updatedData]="updatesBookData"></app-books-list>
+  <app-book *ngIf="selectedBook" [bookData]="selectedBook" (bookDataSaved)="onBookDataSaved($event)"></app-book>
+</div>

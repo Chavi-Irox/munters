@@ -1,0 +1,9 @@
+<button (click)="addBook()">Add</button>
+<input type="text" [(ngModel)]="filterTxt" placeholder="Filter By Name">
+<div [ngClass]="{'selected':selectedBook && book.CatalogId === selectedBook.CatalogId}" (click)="BookClicked(book)"
+    *ngFor="let book of booksList$|async">
+    <h3>
+        {{ book.Name }}, {{book.AuthorName}}
+    </h3>
+    <button (click)="deleteBook(book)">X</button>
+</div>
